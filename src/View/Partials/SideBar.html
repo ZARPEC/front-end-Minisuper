@@ -1,4 +1,4 @@
-<script src="../../../public/Js/SideBarI.js"></script>
+<script src="../../Js/SideBarI.js"></script>
 <div class="MainSideBar">
   <div class="toggle-btn" onclick="toggleSidebar(this)">
     <span></span>
@@ -9,12 +9,15 @@
     <div class="elemenBar">
       <ul>
         <li class="">
-          <a href="?action=home"><i class="fa-solid fa-star"></i>Inicio</a>
+          <a href="/"><i class="fa-solid fa-star"></i>Inicio</a>
         </li>
         <li class="">
           <a href="?action=products&category=Belleza"
             ><i class="fa-solid fa-star"></i>Categorias</a
           >
+        </li>
+        <li class="">
+          <a href="/login"><i class="fa-solid fa-star"></i> iniciar Sesión</a>
         </li>
         <!--    
             <?php
@@ -26,7 +29,7 @@
                 ";*/
                 }else{
                     echo "
-                    <li class=''><a href='?action=login'><i class='fa-solid fa-star'></i> iniciar Sesión</a></li>
+                    <li class=''><a href='/login'><i class='fa-solid fa-star'></i> iniciar Sesión</a></li>
                     ";
                 }
                 ?>
