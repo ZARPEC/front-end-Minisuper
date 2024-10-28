@@ -1,4 +1,4 @@
-<?php 
+<?php /*
 use Controller\UserController\User;
 
 $usuario = new User();
