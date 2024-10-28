@@ -1,17 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const submit = document.getElementById("is");
-  if (submit) {
-    submit.addEventListener("click", (event) => {
-      event.preventDefault();
-      loginR();
-    });
-  }
-});
- 
-
 
 export function loginR() {
-  let apiUrl = "http://127.0.0.1:82/minisuper/api.php";
+  let apiUrl = "http://127.0.0.1:82/minisuper/api.php?action=login";
   let user = document.getElementsByName("user")[0].value;
   let password = document.getElementsByName("password")[0].value;
 
@@ -19,7 +8,6 @@ export function loginR() {
     user: user,
     password: password,
   };
-  console.log(JSON.stringify(data));
 
   fetch(apiUrl, {
     method: "POST",
@@ -28,7 +16,12 @@ export function loginR() {
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error en la solicitud"); // Maneja errores de estado HTTP
+      }
+      return response.json();
+    })
     .then((data) => {
       if (data.status === "success") {
         alert("Bienvenido " + data.user);
