@@ -1,11 +1,11 @@
 let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
 
 // Función para guardar el carrito en localStorage
-function guardarCarrito() {
+export function guardarCarrito() {
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-function mostrarCarrito() {
+export function mostrarCarrito() {
   const cartItems = document.getElementById("cart-items");
   cartItems.innerHTML = "";
   let subtotal = 0;
@@ -36,7 +36,7 @@ function mostrarCarrito() {
 }
 
 // Función para agregar un producto al carrito
-function agregarAlCarrito(producto) {
+export function agregarAlCarrito(producto) {
   // Verificar si el producto ya existe en el carrito
   const existeProducto = carrito.find((item) => item.id === producto.id);
 
@@ -55,25 +55,25 @@ function agregarAlCarrito(producto) {
 }
 
 // Función para actualizar la cantidad de un producto
-function actualizarCantidad(index, nuevaCantidad) {
+export function actualizarCantidad(index, nuevaCantidad) {
   carrito[index].cantidad = parseInt(nuevaCantidad);
   guardarCarrito();
   mostrarCarrito();
 }
 
 // Función para eliminar un producto del carrito
-function eliminarDelCarrito(index) {
+export function eliminarDelCarrito(index) {
   carrito.splice(index, 1);
   guardarCarrito();
   mostrarCarrito();
 }
 
-function vaciarCarrito() {
+export function vaciarCarrito() {
   sessionStorage.removeItem("carrito"); // Vaciar el carrito en sessionStorage
 }
 
 // Función para agregar los productos como campos ocultos al formulario
-function hiddenProduct() {
+export function hiddenProduct() {
   const form = document.getElementById("checkout-form");
 
   // Crear un div que encierre todos los campos ocultos

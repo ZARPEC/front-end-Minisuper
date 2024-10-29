@@ -127,7 +127,7 @@ export function loadSubCategory(category) {
             <div class="col rounded">
               <a class='SubCatLink' href="?action=products&category=${subCat.categoryId}&SubCat=${subCategories.Nsubcategoria}">
                 <div class="category-circle">
-                  <img src="Assets/Images/Category/SubCategory/${subCategories.categoryId}/${subCategories.Nsubcategoria}.png" alt="${subCategories.Nsubcategoria}">
+                  <img src="../Images/Category/SubCategory/${subCat.Categoria}/${subCat.Nsubcategoria}.png" alt="${subCat.Nsubcategoria}">
                 </div>
               </a>
               <p class="category-text">${subCat.Nsubcategoria }</p>

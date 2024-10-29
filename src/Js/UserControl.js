@@ -1,4 +1,4 @@
-
+//  Funciones para el inicio de sesión
 export function loginR() {
   let apiUrl = "http://127.0.0.1:82/minisuper/api.php?action=login";
   let user = document.getElementsByName("user")[0].value;
@@ -24,11 +24,17 @@ export function loginR() {
     })
     .then((data) => {
       if (data.status === "success") {
-        alert("Bienvenido " + data.user);
+        alert("Bienvenido " + data.user['nombre']);
+        localStorage.setItem("userSes", JSON.stringify(data.user));
         window.location.href = "/productList";
       } else {
         alert("Usuario o contraseña incorrectos.");
       }
     })
     .catch((error) => console.error("Error al iniciar sesión:", error));
+}
+
+export function logout() {
+  localStorage.removeItem("user");
+  window.location.href = "/login"; // Redirigir a la página de inicio de sesión
 }
