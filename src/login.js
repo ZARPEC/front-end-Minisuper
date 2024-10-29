@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import LoginTemplate from "./View/user/login.html";
-import { loginR } from "./Js/login.js";
+import { loginR } from "./Js/UserControl.js";
+
 
 const Login = () => {
   useEffect(() => {
