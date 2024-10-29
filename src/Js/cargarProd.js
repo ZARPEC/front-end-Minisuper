@@ -32,7 +32,9 @@ export function loadProducts(category = null, subCategory = null) {
                   <h5 class='card-title'>${product.NombreProd}</h5>
                   <p class='card-text'>${product.CantMedida} ${product.UNIDADMEDIDA}</p>
                   <p class='card-text'>Q${product.precio}</p>
-                  <a href='#' class='btn btn-primary' onclick='agregarAlCarrito({"id": ${product.idProducto}, "precio": ${product.precio}, "nombre": "${product.NombreProd}", "cantidad": 1});'>Añadir al carrito</a>
+                   <button class='btn btn-primary add-to-cart' data-id='${product.idProducto}' data-nombre='${product.NombreProd}' data-precio='${product.precio}'>
+                   Agregar al carrito
+                   </button>
                 </div>
               </div>
             </a>
