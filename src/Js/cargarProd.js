@@ -23,16 +23,17 @@ export function loadProducts(category = null, subCategory = null) {
         products.forEach((product) => {
           const productDiv = document.createElement("div");
           productDiv.classList.add("col-md-4", "mb-4");
+          //href='?action=ProductView&idProduct=${product.idProducto}'
 
           productDiv.innerHTML = `
-            <a href='?action=ProductView&idProduct=${product.idProducto}' class='card-link' style='text-decoration: none; color: inherit;'>
+            <a  class='card-link' style='text-decoration: none; color: inherit;'>
               <div class='card hover-effect'>
                 <img src='Assets/Img/Category/SubCategory/Deportes/Products/${product.NombreProd}.png' class='card-img-top' alt='${product.NombreProd}'>
                 <div class='card-body text-center'>
                   <h5 class='card-title'>${product.NombreProd}</h5>
                   <p class='card-text'>${product.CantMedida} ${product.UNIDADMEDIDA}</p>
                   <p class='card-text'>Q${product.precio}</p>
-                   <button class='btn btn-primary add-to-cart' data-id='${product.idProducto}' data-nombre='${product.NombreProd}' data-precio='${product.precio}'>
+                   <button type='button' class='btn btn-primary add-to-cart' data-id='${product.idProducto}' data-nombre='${product.NombreProd}' data-precio='${product.precio}'>
                    Agregar al carrito
                    </button>
                 </div>
