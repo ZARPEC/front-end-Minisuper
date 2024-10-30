@@ -7,25 +7,35 @@ export function guardarCarrito() {
 
 export function mostrarCarrito() {
   const cartItems = document.getElementById("cart-items");
-  cartItems.innerHTML = "";
+
+  if (!cartItems) {
+    console.error("El elemento 'cart-items' no se encontró.");
+    return; // Salir si no se encontró el elemento
+  }
+
+  cartItems.innerHTML = ""; // Limpia el contenido
   let subtotal = 0;
 
-  carrito.forEach((item, index) => {
-    const itemSubtotal = item.precio * item.cantidad;
-    subtotal += itemSubtotal;
+  if (carrito && Array.isArray(carrito)) {
+    carrito.forEach((item, index) => {
+      const itemSubtotal = item.precio * item.cantidad;
+      subtotal += itemSubtotal;
 
-    cartItems.innerHTML += `
-                <tr>
-                    <td>${item.nombre}</td>
-                    <td><input type="number" class="form-control" value="${
-                      item.cantidad
-                    }" min="1" onchange="actualizarCantidad(${index}, this.value)" style="width: 80px;"></td>
-                    <td>Q${item.precio.toFixed(2)}</td>
-                    <td>Q${itemSubtotal.toFixed(2)}</td>
-                    <td><button class="btn btn-danger btn-sm" onclick="eliminarDelCarrito(${index})">Eliminar</button></td>
-                </tr>
-            `;
-  });
+      cartItems.innerHTML += `
+        <tr>
+          <td>${item.nombre}</td>
+          <td>
+            <input type="number" class="form-control" value="${
+              item.cantidad
+            }" min="1" style="width: 80px;" data-index="${index}">
+          </td>
+          <td>Q${item.precio.toFixed(2)}</td>
+          <td>Q${itemSubtotal.toFixed(2)}</td>
+          <td><button class="btn btn-danger btn-sm eliminar-btn" data-index="${index}" >Eliminar</button></td>
+        </tr>
+      `;
+    });
+  }
 
   const impuestos = subtotal * 0.12;
   const total = subtotal;
@@ -33,6 +43,26 @@ export function mostrarCarrito() {
   document.getElementById("subtotal").textContent = `Q${subtotal.toFixed(2)}`;
   document.getElementById("total").textContent = `Q${total.toFixed(2)}`;
   hiddenProduct();
+
+  // Agregar el evento de cambio a los inputs de cantidad
+  const cantidadInputs = document.querySelectorAll("input[type='number']");
+  cantidadInputs.forEach((input) => {
+    input.addEventListener("change", (e) => {
+      const index = e.target.dataset.index; // Obtener el índice del producto
+      const nuevaCantidad = e.target.value; // Obtener la nueva cantidad
+      actualizarCantidad(index, nuevaCantidad); // Llamar a la función para actualizar la cantidad
+    });
+  });
+
+  // Agregar el evento de clic a los botones de eliminar
+  const eliminarBtns = document.querySelectorAll(".eliminar-btn");
+  eliminarBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const index = e.target.dataset.index; // Obtener el índice del producto a eliminar
+      console.log("index", index);
+      eliminarDelCarrito(index); // Llamar a la función para eliminar el producto
+    });
+  });
 }
 
 // Función para agregar un producto al carrito
