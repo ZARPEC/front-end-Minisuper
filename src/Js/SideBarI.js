@@ -1,14 +1,14 @@
-function toggleSidebar(ref){
+export function toggleSidebar(ref){
   document.getElementById("sidebar").classList.toggle('active');
 }
 let slideIndex = 1;
 showSlides(slideIndex);
 
-function plusSlides(n) {
+export function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
-function showSlides(n) {
+export function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("slides");
   // Asegúrate de que el valor de n esté dentro del rango válido
